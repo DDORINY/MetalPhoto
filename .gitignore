@@ -1,0 +1,42 @@
+# Original server files and local environments
+.vscode/
+themes/
+backups/
+backup/
+local-site/
+uploads/
+wp-config.php
+.env
+.env.*
+
+# Database dumps and archives
+*.sql
+*.sql.gz
+*.zip
+*.tar.gz
+*.bak
+*.orig
+
+# Credentials, certificates and private keys
+.aws/
+.ssh/
+.netrc
+.npmrc
+.git-credentials
+credentials*
+secrets*
+*password*
+*token*
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+id_rsa*
+id_ed25519*
+
+# Generated files
+node_modules/
+.DS_Store
+Thumbs.db
