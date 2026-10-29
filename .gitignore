@@ -33,10 +33,21 @@ secrets*
 *.pfx
 *.crt
 *.cer
+*.der
+*.p7b
+*.p7c
+*.p8
+*.jks
+*.keystore
 id_rsa*
 id_ed25519*
+id_dsa*
+id_ecdsa*
 
 # Generated files
 node_modules/
+chrome-profile/
+playwright/.auth/
+*.log
 .DS_Store
 Thumbs.db

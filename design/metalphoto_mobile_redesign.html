@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="메탈포토 반응형 홈페이지 리디자인 HTML 시안 — 큰 글씨, 편리한 제품 탐색과 문의 동선">
+  <title>메탈포토 | 오래도록 남길 소중한 기록 — 모바일 중심 리디자인 시안</title>
+  <style>
+    :root{--ink:#18252b;--muted:#526069;--brand:#145363;--brand-dark:#0c3c48;--paper:#fff;--soft:#f4f6f5;--line:#dbe2e2;--warm:#e8e0d3;--focus:#e5a23d;--max:1190px;--radius:18px}
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:88px}
+    body{margin:0;font-family: "Pretendard", "Noto Sans KR", "Malgun Gothic",system-ui,sans-serif;font-size:18px;line-height:1.7;color:var(--ink);background:var(--paper);word-break:keep-all}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;cursor:pointer}
+    img{max-width:100%;display:block}
+    svg{display:block;max-width:100%}
+    :focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+    .skip{position:absolute;left:10px;top:-100px;background:#fff;border:3px solid #000;padding:12px;z-index:99}.skip:focus{top:10px}
+    .container{width:min(calc(100% - 48px),var(--max));margin-inline:auto}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--brand);font-size:14px;font-weight:800}
+    .eyebrow::before{content:"";width:24px;height:2px;background:currentColor}
+    h1,h2,h3,p{margin:0} h1,h2,h3{line-height:1.3;letter-spacing:-.035em}
+    h1{font-size:clamp(36px,5vw,64px);font-weight:800}
+    h2{font-size:clamp(30px,3.3vw,44px);font-weight:800}
+    h3{font-size:clamp(22px,2.2vw,28px);font-weight:800}
+    p{color:var(--muted)}
+    .muted{color:var(--muted)}.section{padding:100px 0}.section-head{max-width:760px;margin-bottom:35px}.section-head h2{margin-top:15px}.section-head p{margin-top:14px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:12px 24px;border-radius:12px;border:2px solid transparent;font-weight:800;font-size:18px;text-align:center;transition:background .18s,transform .18s}
+    .btn svg{width:20px;height:20px;flex:none}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{color:white;background:var(--brand)}.btn-primary:hover{background:var(--brand-dark)}
+    .btn-light{background:#fff;border-color:var(--line)}.btn-light:hover{background:#f2f7f7}
+    .btn-outline{border-color:var(--brand);color:var(--brand);background:transparent}
+    .topline{background:#eff2f2;padding:6px 0;text-align:right;font-size:14px;color:#526068}
+    .topline .container{display:flex;align-items:center;justify-content:flex-end;gap:22px}
+    .topline a{text-decoration:underline;text-underline-offset:3px}
+    .site-header{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 3px 18px #0f2e3b08}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;gap:28px;min-height:84px}
+    .logo{display:flex;align-items:center;gap:12px;flex:none}
+    .logo-mark{width:43px;height:43px;border-radius:10px;background:#145363;position:relative;overflow:hidden}
+    .logo-mark::before{content:"";position:absolute;width:26px;height:26px;border:5px solid #fff;transform:rotate(45deg);left:9px;top:8px;border-radius:2px}
+    .logo-mark::after{content:"";position:absolute;width:12px;height:12px;background:#d7c1a0;transform:rotate(45deg);left:15px;top:15px}
+    .logo-word{font-weight:900;line-height:1.15;font-size:22px;letter-spacing:.015em}.logo-word small{display:block;color:#697782;font-size:11px;font-weight:700;letter-spacing:.14em;margin-top:5px}
+    .desktop-nav{display:flex;align-items:center;gap:25px}.desktop-nav a:not(.btn){font-size:16px;font-weight:750;padding:12px 0}.desktop-nav a:not(.btn):hover{color:var(--brand)}
+    .menu-toggle{display:none;background:#f2f5f5;border:1px solid var(--line);border-radius:12px;min-height:50px;min-width:54px;align-items:center;justify-content:center}
+    .menu-toggle svg{width:25px;height:25px}
+    .mobile-nav{display:none;background:#fff;border-top:1px solid var(--line)}
+    .mobile-nav a{display:flex;align-items:center;justify-content:space-between;padding:15px 4px;border-bottom:1px solid var(--line);font-weight:800;font-size:19px;min-height:58px}
+    .mobile-nav .btn{margin:18px 0;display:flex}
+    .hero{background:linear-gradient(112deg,#f6f7f3 0%,#e9eeed 53%,#d9e4e4 100%);overflow:hidden}
+    .hero-layout{display:grid;grid-template-columns:1.03fr .97fr;align-items:center;gap:30px;min-height:580px;padding:55px 0}
+    .hero-copy{position:relative;z-index:1}.hero-copy h1{margin:20px 0 22px}.hero-copy h1 span{color:var(--brand)}
+    .hero-copy>p{max-width:545px;font-size:20px;color:#4b5a60}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+    .hero-features{margin-top:30px;display:flex;flex-wrap:wrap;gap:14px 23px;font-size:15px;color:#40535a;font-weight:750}
+    .hero-features span{display:flex;align-items:center;gap:7px}.hero-features svg{width:19px;height:19px;color:var(--brand)}
+    .art-stage{position:relative;height:480px;display:grid;place-items:center}
+    .stage-halo{position:absolute;width:420px;height:420px;background:#b5caca;border-radius:50%;opacity:.55;filter:blur(2px);right:10px}
+    .plaque{position:relative;width:min(82%,420px);aspect-ratio:4/4.5;padding:18px;background:linear-gradient(125deg,#f4f2ed 4%,#9dabae 28%,#f8f8f6 47%,#a1abad 75%,#eceded);box-shadow:18px 25px 44px #193f4a3d,-5px -5px 16px #fff8;transform:rotate(5deg);border-radius:4px;border:2px solid #b6c0be}
+    .plaque-inner{height:100%;border:2px solid #71878d;background:linear-gradient(135deg,#d3dfe0,#f8f8f3 48%,#c7d4d3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:14px}
+    .plaque-emblem{width:100px;height:100px;opacity:.7}.plaque-inner strong{font-family:Georgia,serif;letter-spacing:.15em;font-size:28px;color:#26434b}.plaque-inner small{font-size:13px;letter-spacing:.15em;color:#52696d}
+    .art-chip{position:absolute;bottom:36px;left:8px;background:white;border:1px solid #dce5e3;box-shadow:0 15px 40px #173e4422;border-radius:12px;padding:14px 18px;font-size:15px;font-weight:800;color:var(--ink)}
+    .art-chip small{display:block;font-size:13px;color:#6a7576;font-weight:600}
+    .quick-access{padding:22px 0;background:var(--brand-dark);color:white}
+    .quick-inner{display:flex;align-items:center;gap:14px;justify-content:space-between}
+    .quick-inner strong{font-size:18px}.quick-inner p{color:#d8e6e6;font-size:15px}.quick-links{display:flex;gap:10px}
+    .quick-links a{background:#ffffff1f;border:1px solid #ffffff50;border-radius:10px;padding:11px 19px;font-weight:800;font-size:16px;min-height:48px;display:inline-flex;align-items:center}
+    .category-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .category-card{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:white;box-shadow:0 12px 36px #203e4610;display:flex;flex-direction:column}
+    .category-media{height:270px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+    .memorial{background:linear-gradient(155deg,#ddd3c4,#a8afa5 50%,#676a64)}
+    .records{background:linear-gradient(150deg,#b9cccf,#e6e5de 58%,#8f9f9b)}
+    .display-frame{width:180px;height:208px;border:11px solid #a6b0aa;background:#f2ece3;box-shadow:12px 14px 22px #0003, inset 0 0 0 3px #65716f;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:11px;transform:rotate(-3deg)}
+    .portrait-circle{width:86px;height:86px;background:linear-gradient(140deg,#849a9c,#c8d4cd);border-radius:50%;display:grid;place-items:center}.portrait-circle svg{width:60px;height:60px}
+    .frame-lines{height:5px;width:92px;background:#b5a88d;border-radius:10px}.frame-lines.short{width:63px}
+    .record-panel{width:245px;min-height:160px;background:linear-gradient(115deg,#d1c9a8,#f5eac5 35%,#ab9d7b);border:9px solid #b6ada1;box-shadow:14px 17px 26px #0003;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transform:rotate(3deg)}
+    .record-panel span{font-family:Georgia,serif;letter-spacing:.1em;font-size:23px;font-weight:800;color:#534d3c}.record-panel i{width:75%;height:5px;background:#8e8269;opacity:.65}.record-panel i:last-child{width:45%}
+    .mock-label{position:absolute;right:15px;bottom:14px;background:#ffffffdd;border-radius:8px;padding:3px 10px;color:#2c454d;font-size:12px;font-weight:750}
+    .category-copy{padding:30px;display:flex;flex:1;flex-direction:column;align-items:flex-start}
+    .category-copy h3{margin:10px 0}.category-copy p{margin-bottom:25px}.category-copy .btn{margin-top:auto}
+    .note{font-size:13px;color:#657578;margin-top:20px}
+    .products{background:var(--soft)}
+    .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .product-link{background:white;border:1px solid #dce4e4;border-radius:15px;padding:23px 22px;display:flex;align-items:center;gap:14px;min-height:116px;transition:border .2s,box-shadow .2s}
+    .product-link:hover{border-color:var(--brand);box-shadow:0 8px 22px #174d5c18}
+    .icon-box{flex:none;width:49px;height:49px;background:#e6f0ef;color:var(--brand);border-radius:12px;display:grid;place-items:center}.icon-box svg{width:27px;height:27px}
+    .product-link strong{font-size:19px;line-height:1.3}.product-link small{font-size:14px;color:var(--muted);display:block;margin-top:6px}
+    .why-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:65px;align-items:center}
+    .why-board{min-height:380px;border-radius:20px;background:linear-gradient(135deg,#273d45,#5d777c);position:relative;overflow:hidden;padding:40px;display:flex;flex-direction:column;justify-content:flex-end}
+    .why-board::before{content:"";position:absolute;left:10%;top:-25%;height:100%;width:50%;background:linear-gradient(90deg,transparent,#fff3,transparent);transform:rotate(33deg)}
+    .why-board strong{position:relative;color:#fff;font-size:34px;line-height:1.35}.why-board span{position:relative;color:#dfebed;margin-top:18px;font-size:16px}
+    .feature-list{display:grid;gap:25px;margin-top:25px}
+    .feature{display:flex;align-items:flex-start;gap:15px}.feature .icon-box{width:47px;height:47px}.feature h3{font-size:21px;margin:0 0 6px}.feature p{font-size:17px}
+    .how{background:#f5f4f0}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .step{background:white;border-radius:16px;padding:28px;border:1px solid #e0e2dd}.step-number{font-weight:900;color:var(--brand);font-size:16px;letter-spacing:.07em}.step h3{margin:18px 0 12px;font-size:23px}.step p{font-size:17px}
+    .cta{background:var(--brand);padding:60px 0;color:white}
+    .cta-inner{display:flex;align-items:center;justify-content:space-between;gap:25px}.cta h2{font-size:clamp(29px,3vw,39px)}.cta p{color:#e5eff0;margin-top:12px}
+    .cta .btn{background:white;color:var(--brand-dark)}
+    .footer{background:#14252c;color:white;padding:55px 0 95px}
+    .footer-layout{display:flex;justify-content:space-between;gap:35px}.footer p{color:#afc0c4;font-size:15px;margin-top:15px;max-width:520px}
+    .footer-links{display:flex;gap:14px 26px;flex-wrap:wrap;align-content:flex-start}.footer-links a{color:#dae5e7;text-decoration:underline;text-underline-offset:4px;font-size:15px}
+    .copyright{border-top:1px solid #496069;margin-top:40px;padding-top:20px;font-size:13px;color:#b6c8cc}
+    .mobile-action{display:none}
+    .prototype-note{position:fixed;right:16px;bottom:16px;padding:8px 12px;background:#fffae9;border:1px solid #d7bd70;border-radius:10px;font-size:12px;color:#674e1b;z-index:50;box-shadow:0 4px 16px #0002}
+    @media(max-width:1000px){.desktop-nav{gap:15px}.desktop-nav a:not(.btn){font-size:14px}.desktop-nav .btn{font-size:15px;padding:10px 14px}.hero-layout{gap:0}.product-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:760px){html{scroll-padding-top:72px}body{font-size:18px;line-height:1.65}.container{width:min(calc(100% - 36px),var(--max))}.topline{display:none}.header-inner{min-height:72px}.logo-mark{width:38px;height:38px}.logo-word{font-size:20px}.desktop-nav{display:none}.menu-toggle{display:flex}.mobile-nav.is-open{display:block}.section{padding:66px 0}.section-head{margin-bottom:25px}.section-head p{font-size:17px}.hero-layout{grid-template-columns:1fr;padding:48px 0 24px;min-height:unset}.hero-copy h1{font-size:clamp(35px,9vw,49px);margin:14px 0 16px}.hero-copy>p{font-size:18px}.hero-actions{display:grid;grid-template-columns:1fr;gap:10px;margin-top:25px}.hero-actions .btn{width:100%;min-height:58px}.hero-features{margin-top:22px;gap:9px 18px}.art-stage{height:310px;margin-top:10px}.stage-halo{width:275px;height:275px;right:calc(50% - 150px)}.plaque{width:230px;padding:11px;box-shadow:12px 15px 30px #193f4a3a}.plaque-inner{gap:9px}.plaque-emblem{width:65px;height:65px}.plaque-inner strong{font-size:21px}.plaque-inner small{font-size:10px}.art-chip{bottom:16px;left:10px;padding:9px 12px;font-size:13px}.quick-inner{display:block}.quick-inner p{margin-top:4px}.quick-links{margin-top:16px;display:grid;grid-template-columns:1fr 1fr}.quick-links a{justify-content:center;min-height:52px;font-size:16px}.category-grid{grid-template-columns:1fr;gap:20px}.category-media{height:225px}.category-copy{padding:24px}.category-copy p{font-size:17px}.category-copy .btn{width:100%}.product-grid{grid-template-columns:1fr;gap:12px}.product-link{min-height:92px;padding:17px 18px}.why-layout{grid-template-columns:1fr;gap:30px}.why-board{min-height:265px;padding:27px}.why-board strong{font-size:26px}.feature-list{gap:20px;margin-top:0}.steps{grid-template-columns:1fr;gap:12px}.step{padding:22px}.step h3{margin:8px 0}.cta{padding:46px 0}.cta-inner{display:block}.cta .btn{width:100%;margin-top:24px}.footer{padding:44px 0 125px}.footer-layout{display:block}.footer-links{margin-top:27px}.mobile-action{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:70;background:#fff;padding:11px max(15px,env(safe-area-inset-right)) calc(11px + env(safe-area-inset-bottom)) max(15px,env(safe-area-inset-left));border-top:1px solid #d6dfdf;box-shadow:0 -5px 22px #0d313b1b}.mobile-action a{display:flex;align-items:center;justify-content:center;gap:7px;border-radius:10px;font-size:17px;font-weight:850;min-height:57px}.mobile-action .order{background:#e8f1f1;color:#164e5b}.mobile-action .inquiry{background:var(--brand);color:#fff}.mobile-action svg{width:20px;height:20px}.prototype-note{position:static;text-align:center;border-radius:0;box-shadow:none}.note{font-size:12px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 바로가기</a>
+  <div class="topline"><div class="container"><span>기술과 정성을 담은 금속 기록 제작</span><a href="http://gomemo.net/contact/">회사 위치 안내</a></div></div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#home" aria-label="메탈포토 시안 첫 화면으로 이동"><span class="logo-mark" aria-hidden="true"></span><span class="logo-word">METALPHOTO<small>메탈포토</small></span></a>
+      <nav class="desktop-nav" aria-label="주 메뉴"><a href="#categories">제품 안내</a><a href="#products">제품 종류</a><a href="#technology">기술 소개</a><a href="http://gomemo.net/about/">회사 소개</a><a href="http://gomemo.net/contact/">오시는 길</a><a class="btn btn-primary" href="http://www.gomemo.net/room/qu/">문의하기 →</a></nav>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="전체 메뉴 열기" aria-expanded="false" aria-controls="mobileNav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    </div>
+    <nav class="mobile-nav" id="mobileNav" aria-label="모바일 메뉴" hidden><div class="container"><a href="#categories">제품 안내 <span aria-hidden="true">›</span></a><a href="#products">제품 종류 <span aria-hidden="true">›</span></a><a href="#technology">기술 소개 <span aria-hidden="true">›</span></a><a href="http://gomemo.net/about/">회사 소개 <span aria-hidden="true">›</span></a><a href="http://gomemo.net/contact/">오시는 길 <span aria-hidden="true">›</span></a><a class="btn btn-primary" href="http://www.gomemo.net/room/qu/">문의하기 →</a></div></nav>
+  </header>
+  <main id="main">
+    <section class="hero" id="home"><div class="container hero-layout"><div class="hero-copy"><div class="eyebrow">MEMORIES THAT LAST</div><h1>소중한 기록,<br><span>오래도록 남기다.</span></h1><p>추모 사진부터 기념·기록물까지. 금속 위에 남기는 특별한 기록을 메탈포토와 함께하세요.</p><div class="hero-actions"><a class="btn btn-primary" href="#categories">제품 종류 살펴보기 <span aria-hidden="true">→</span></a><a class="btn btn-light" href="http://www.gomemo.net/room/qu/">제작 문의하기</a></div><div class="hero-features"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg>추모용 메탈포토</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg>기록물·기념물</span></div></div><div class="art-stage" role="img" aria-label="금속판에 기록을 새기는 모습을 표현한 시안용 일러스트"><div class="stage-halo"></div><div class="plaque"><div class="plaque-inner"><svg class="plaque-emblem" viewBox="0 0 100 100" fill="none" stroke="#35555b" stroke-width="3"><circle cx="50" cy="50" r="39"/><path d="M19 63 42 38l15 15 11-11 15 21"/><path d="M22 72h56M40 20l10-7 10 7"/></svg><strong>MEMORIES</strong><small>시간을 넘어 남는 기록</small></div></div><div class="art-chip">메탈 질감 · 제품 디테일<small>실제 제품 사진으로 교체 예정</small></div></div></div></section>
+    <section class="quick-access"><div class="container quick-inner"><div><strong>원하시는 제품을 빠르게 찾으세요.</strong><p>큰 메뉴로 쉽고 편하게 이동할 수 있습니다.</p></div><div class="quick-links"><a href="http://gomemo.net/modern/">추모용 제품 보기</a><a href="http://gomemo.net/metalphoto/">기념물 제품 보기</a></div></div></section>
+    <section class="section" id="categories"><div class="container"><div class="section-head"><span class="eyebrow">PRODUCT CATEGORIES</span><h2>어떤 제품을 찾으시나요?</h2><p>필요한 제품을 선택하면 기존 메탈포토 상세 페이지로 이동합니다.</p></div><div class="category-grid"><article class="category-card"><div class="category-media memorial" role="img" aria-label="추모용 금속 사진 액자를 단순화해 표현한 시안 일러스트"><div class="display-frame"><div class="portrait-circle"><svg viewBox="0 0 60 60" fill="#e8edeb"><circle cx="30" cy="20" r="12"/><path d="M9 56c1-15 11-22 21-22s20 7 21 22"/></svg></div><div class="frame-lines"></div><div class="frame-lines short"></div></div><span class="mock-label">제품 이미지 예시</span></div><div class="category-copy"><span class="eyebrow">01 / MEMORIAL</span><h3>추모용 메탈포토</h3><p>소중한 분을 오래 기억할 수 있도록 준비하는 추모용 사진·기념 제품입니다.</p><a class="btn btn-outline" href="http://gomemo.net/modern/">추모용 제품 전체 보기 <span aria-hidden="true">→</span></a></div></article><article class="category-card"><div class="category-media records" role="img" aria-label="금속 기념패를 단순화해 표현한 시안 일러스트"><div class="record-panel"><span>METAL PHOTO</span><i></i><i></i><i></i></div><span class="mock-label">제품 이미지 예시</span></div><div class="category-copy"><span class="eyebrow">02 / RECORDS</span><h3>기록물 · 기념물</h3><p>상패, 기념패, 전시 기록물부터 기관·기업을 위한 맞춤형 기념 제작까지.</p><a class="btn btn-outline" href="http://gomemo.net/metalphoto/">기록물·기념물 전체 보기 <span aria-hidden="true">→</span></a></div></article></div><p class="note">※ 본 시안의 제품 그래픽은 실제 상품 사진이 아닌 임시 그래픽입니다. 기존 메탈포토의 고화질 원본 사진으로 교체하세요.</p></div></section>
+    <section class="section products" id="products"><div class="container"><div class="section-head"><span class="eyebrow">FIND YOUR PRODUCT</span><h2>제품 종류별 바로가기</h2><p>자주 찾는 제품을 한 번의 터치로 확인하세요.</p></div><div class="product-grid">
+      <a class="product-link" href="http://www.gomemo.net/room/modern2/"><span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="3" width="14" height="18" rx="1"/><circle cx="12" cy="9" r="2.5"/><path d="M8 17c0-2 2-3 4-3s4 1 4 3"/></svg></span><span><strong>모던</strong><small>추모용 제품 보기</small></span></a>
+      <a class="product-link" href="http://www.gomemo.net/room/special1/"><span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 4 6v8c0 5 4 7 8 8 4-1 8-3 8-8V6z"/><path d="m8 12 3 3 5-6"/></svg></span><span><strong>스페셜</strong><small>추모용 제품 보기</small></span></a>
+      <a class="product-link" href="http://www.gomemo.net/room/vip1/"><span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 9 4-5 5 5 5-5 4 5-2 10H5z"/><path d="M5 19h14"/></svg></span><span><strong>VIP폴</strong><small>추모용 제품 보기</small></span></a>
+      <a class="product-link" href="http://gomemo.net/room/t-1/"><span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="3" width="10" height="13"/><path d="M3 21h18M9 16v5m6-5v5"/></svg></span><span><strong>위패 · 스탠드</strong><small>형태별 제품 보기</small></span></a>
+      <a class="product-link" href="http://www.gomemo.net/room/nature/"><span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21V7M12 13 6 8M12 11l5-5"/><path d="M6 4c-3 3-3 9 1 11M17 3c4 4 4 10-1 13M3 21h18"/></svg></span><span><strong>자연장 · 수목장</strong><small>적용 제품 보기</small></span></a>
+      <a class="product-link" href="http://www.gomemo.net/room/certification/"><span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span><span><strong>상패 · 감사패</strong><small>기념 제작 보기</small></span></a>
+    </div></div></section>
+    <section class="section" id="technology"><div class="container why-layout"><div class="why-board"><strong>사진과 기록을<br>금속 위에 담다.</strong><span>METALPHOTO / TECHNOLOGY</span></div><div><span class="eyebrow">ABOUT METALPHOTO</span><h2 style="margin:16px 0 16px">기록의 가치를<br>더 오래 전합니다.</h2><p>메탈포토의 기술과 다양한 적용 분야를 살펴보세요. 자세한 제작 방식과 사양은 실제 제품 안내에서 확인할 수 있습니다.</p><div class="feature-list"><div class="feature"><span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 3 8l9 5 9-5-9-5ZM3 13l9 5 9-5M3 18l9 4 9-4"/></svg></span><div><h3>다양한 적용 분야</h3><p>추모용 제품, 기념패, 전시·기록물 등 필요한 용도별로 안내합니다.</p></div></div><div class="feature"><span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 3"/></svg></span><div><h3>기술 정보 확인</h3><p>메탈포토의 제작 기술 및 소개 자료를 별도 페이지에서 확인할 수 있습니다.</p></div></div></div><a class="btn btn-outline" href="http://gomemo.net/introduce/" style="margin-top:30px">기술 소개 자세히 보기 <span aria-hidden="true">→</span></a></div></div></section>
+    <section class="section how"><div class="container"><div class="section-head"><span class="eyebrow">HOW TO START</span><h2>문의부터 제품 확인까지</h2><p>복잡한 절차보다 고객이 다음 행동을 쉽게 이해하도록 구성했습니다.</p></div><div class="steps"><div class="step"><span class="step-number">STEP 01</span><h3>제품 종류 선택</h3><p>추모용과 기록물·기념물 중 필요한 종류를 선택하세요.</p></div><div class="step"><span class="step-number">STEP 02</span><h3>제품 정보 확인</h3><p>사진과 상세 정보를 확인하고 필요한 내용을 정리하세요.</p></div><div class="step"><span class="step-number">STEP 03</span><h3>주문 또는 문의</h3><p>기존 주문·문의 페이지에서 제작에 필요한 내용을 전달하세요.</p></div></div><p class="note">※ 실제 제작·납품 절차를 의미하는 문구가 아니라 홈페이지 이용 흐름을 설명한 시안입니다.</p></div></section>
+    <section class="cta"><div class="container cta-inner"><div><h2>어떤 제품이 필요한지<br>상담하고 싶으신가요?</h2><p>기존 메탈포토 문의 페이지로 이동해 문의를 남길 수 있습니다.</p></div><a class="btn" href="http://www.gomemo.net/room/qu/">문의 페이지 바로가기 <span aria-hidden="true">→</span></a></div></section>
+  </main>
+  <footer class="footer"><div class="container"><div class="footer-layout"><div><div class="logo"><span class="logo-mark" aria-hidden="true"></span><span class="logo-word">METALPHOTO<small style="color:#afc0c4">메탈포토</small></span></div><p>메탈포토 홈페이지의 모바일 중심 리디자인 시안입니다. 운영 전 회사 연락처, 사업자 정보, 개인정보처리방침 등 실제 정보를 확인해 반영해야 합니다.</p></div><nav class="footer-links" aria-label="푸터 메뉴"><a href="http://gomemo.net/about/">회사소개</a><a href="http://gomemo.net/introduce/">기술소개</a><a href="http://gomemo.net/contact/">오시는길</a><a href="http://www.gomemo.net/order_question/">주문하기</a><a href="http://www.gomemo.net/room/qu/">문의하기</a></nav></div><div class="copyright">© METALPHOTO · 디자인 시안 / 실제 운영 페이지 아님</div></div></footer>
+  <div class="mobile-action" aria-label="빠른 이용 메뉴"><a class="order" href="http://www.gomemo.net/order_question/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3h8M7 6H5v15h14V6h-2M8 4h8v4H8z"/><path d="M9 13h6M9 17h6"/></svg>주문하기</a><a class="inquiry" href="http://www.gomemo.net/room/qu/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H7l-3 4V4z"/><path d="M8 9h8M8 12h5"/></svg>문의하기</a></div>
+  <div class="prototype-note">디자인 시안 · 제품 그래픽은 임시 이미지</div>
+  <script>
+    const toggle=document.getElementById('menuToggle');
+    const nav=document.getElementById('mobileNav');
+    function setMenu(open){toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'전체 메뉴 닫기':'전체 메뉴 열기');nav.hidden=!open;nav.classList.toggle('is-open',open)}
+    toggle.addEventListener('click',()=>setMenu(toggle.getAttribute('aria-expanded')!=='true'));
+    nav.addEventListener('click',event=>{if(event.target.closest('a'))setMenu(false)});
+    document.addEventListener('keydown',event=>{if(event.key==='Escape'&&toggle.getAttribute('aria-expanded')==='true'){setMenu(false);toggle.focus()}});
+    window.matchMedia('(min-width: 761px)').addEventListener('change',event=>{if(event.matches)setMenu(false)});
+  </script>
+</body>
+</html>

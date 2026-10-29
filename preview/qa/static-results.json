@@ -1,0 +1,14 @@
+﻿{
+    "pages":  20,
+    "localReferences":  1584,
+    "failures":  [
+
+                 ],
+    "protectedFilesUnchanged":  true,
+    "protectedHash":  "DE-75-09-A7-01-29-AD-0F-66-82-B7-03-6C-72-6C-18-AC-8A-9D-5B-2E-FD-3B-0C-66-CD-6D-B1-25-97-F8-03",
+    "browser":  {
+                    "state":  "COMPLETE",
+                    "total":  361,
+                    "passed":  361
+                }
+}
